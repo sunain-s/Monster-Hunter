@@ -24,11 +24,37 @@ Extensions:
 # --------------------------------------------------------------------------------------------------
 # Imports
 
+import random
+from random import randint
 
 # --------------------------------------------------------------------------------------------------
 # Classes
 
+class Player():
+    
+    lives = 3
+    wins = 0
+    defeats = 0
+    turns = 0
 
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+    def fight(self, monster_rank):
+        monster_num, player_num = randint(1, 100), randint(1, 100)
+        if player_num > monster_num:
+            self.wins += 1
+            self.score += monster_rank
+        elif player_num < monster_num:
+            self.defeats += 1
+        else:
+            self.fight(monster_rank)
+
+
+
+class Monster():
+    pass
 # --------------------------------------------------------------------------------------------------
 # Repeated Functions
 
