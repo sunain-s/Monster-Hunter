@@ -31,15 +31,12 @@ from random import randint
 # Classes
 
 class Player():
-    
-    lives = 3
-    wins = 0
-    defeats = 0
-    turns = 0
 
     def __init__(self, name, score):
         self.name = name
         self.score = score
+        self.defeats = 0
+        self.wins = 0
 
     def fight(self, monster_rank):
         monster_num, player_num = randint(1, 100), randint(1, 100)
@@ -52,9 +49,13 @@ class Player():
             self.fight(monster_rank)
 
 
-
 class Monster():
-    pass
+     
+    def __init__(self, name, monster_rank):
+        self.name = name
+        self.monster_rank = monster_rank
+        
+        
 # --------------------------------------------------------------------------------------------------
 # Repeated Functions
 
