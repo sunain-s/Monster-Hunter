@@ -32,14 +32,15 @@ from random import randint
 
 class Player():
 
-    def __init__(self, name, score):
+    def __init__(self, name):
         self.name = name
-        self.score = score
+        self.score = 0
         self.defeats = 0
         self.wins = 0
+        self.turns = self.wins + self.defeats
 
-    def fight(self, monster_rank):
-        monster_num, player_num = randint(1, 100), randint(1, 100)
+    def fight(self, monster_rank, monster_num):
+        player_num =  randint(1, 100)
         if player_num > monster_num:
             self.wins += 1
             self.score += monster_rank
@@ -51,9 +52,13 @@ class Player():
 
 class Monster():
      
-    def __init__(self, name, monster_rank):
+    def __init__(self, name, rank):
         self.name = name
-        self.monster_rank = monster_rank
+        self.monster_rank = rank
+
+    def monster_rnd_num(self):
+        self.lower_bound = self.monster_rank * 4
+        self.monster_num = randint(self.lower_bound, 100)
         
         
 # --------------------------------------------------------------------------------------------------
