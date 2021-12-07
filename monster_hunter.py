@@ -62,7 +62,13 @@ class Monster():
         
         
 # --------------------------------------------------------------------------------------------------
-# Repeated Functions
+# Functions
+
+def input_validation(user_inp):
+    if user_inp != '1' and user_inp != '2':
+        print('\nEnter a valid response')
+    else:
+        pass
 
 
 # --------------------------------------------------------------------------------------------------
