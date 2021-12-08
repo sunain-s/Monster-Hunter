@@ -25,6 +25,7 @@ Extensions:
 # Imports
 
 import random
+import time
 from random import randint
 
 # --------------------------------------------------------------------------------------------------
