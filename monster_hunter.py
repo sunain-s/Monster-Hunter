@@ -53,6 +53,18 @@ class Player():
     
         else:
             self.fight(monster_rank)
+        
+        print(f'Score:        {self.score}\n'
+            f'Wins:         {self.wins}\n'
+            f'Losses:       {self.defeats}\n'
+            )
+
+    def forfeit(self, monster_rank):
+        self.score -= monster_rank
+        print(f'Score:        {self.score}\n'
+            f'Wins:         {self.wins}\n'
+            f'Losses:       {self.defeats}\n'
+        )
 
 
 class Monster():
