@@ -40,13 +40,17 @@ class Player():
         self.wins = 0
         self.turns = self.wins + self.defeats
 
-    def fight(self, monster_rank, monster_num):
+    def fight(self, monster_name, monster_rank, monster_num):
         player_num =  randint(1, 100)
         if player_num > monster_num:
             self.wins += 1
             self.score += monster_rank
+            print(f'{monster_name} dealt {monster_num} damage to you, but you hit back with {player_num} damage and won!')     
+
         elif player_num < monster_num:
             self.defeats += 1
+            print(f'You dealt {player_num} damage to {monster_name} , but they dealt {monster_num} damage to you and beat you :(')
+    
         else:
             self.fight(monster_rank)
 
