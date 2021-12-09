@@ -33,38 +33,53 @@ from random import randint
 
 class Player():
 
-    def __init__(self, name):
+    '''
+    - Creates player object with a name, score, defeats, wins and turns
+    - Handles monster vs player battle including forfeits
+    '''
+
+    # creates player object
+    def __init__(self, name): 
         self.name = name
         self.score = 0
         self.defeats = 0
         self.wins = 0
-        self.turns = self.wins + self.defeats
+        self.turns = 0
+        self.i = 0 # monster list iterator
 
     def fight(self, monster_name, monster_rank, monster_num):
         player_num =  randint(1, 100)
-        if player_num > monster_num:
+        # if player wins, add a win, add monster rank to score
+        if player_num > monster_num: 
             self.wins += 1
             self.score += monster_rank
-            print(f'{monster_name} dealt {monster_num} damage to you, but you hit back with {player_num} damage and won!')     
+            print(f'{monster_name} dealt {monster_num} damage to you, but you hit back with {player_num} damage and won!')
+            self.i += 1  
 
+        # if player loses, add a loss
         elif player_num < monster_num:
             self.defeats += 1
             print(f'You dealt {player_num} damage to {monster_name} , but they dealt {monster_num} damage to you and beat you :(')
     
+        # if draw, repeat
         else:
-            self.fight(monster_rank)
+            self.fight(monster_name, monster_rank, monster_num)
         
+        # output updated stats, add a turn
         print(f'Score:        {self.score}\n'
             f'Wins:         {self.wins}\n'
             f'Losses:       {self.defeats}\n'
             )
+        self.turns += 1
 
     def forfeit(self, monster_rank):
+        # subtract monster rank, output updated stats, add a turn
         self.score -= monster_rank
         print(f'Score:        {self.score}\n'
             f'Wins:         {self.wins}\n'
             f'Losses:       {self.defeats}\n'
         )
+        self.turns += 1
 
 class Monster():
      
