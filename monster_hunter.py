@@ -66,7 +66,6 @@ class Player():
             f'Losses:       {self.defeats}\n'
         )
 
-
 class Monster():
      
     def __init__(self, name, rank):
@@ -94,6 +93,22 @@ def user_input():
         else:
             valid = True
     return user_inp
+
+def game_input():
+    actions = [main, sys.exit, get_highscores]
+    print('Would you like to:\n\n'
+        '1 - Play again\n'
+        '2 - Exit\n'
+        '3 - View highscores'
+    )
+    valid = False
+    while not valid:
+        action = input('\nEnter 1, 2 or 3:  ')
+        if action != '1' and action != '2' and action != '3':
+            print('Enter a valid response')
+        else:
+            valid = True
+    actions[int(action) - 1]()
 
 # --------------------------------------------------------------------------------------------------
 # Main Code
