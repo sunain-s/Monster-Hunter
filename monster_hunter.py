@@ -81,12 +81,19 @@ class Monster():
 # --------------------------------------------------------------------------------------------------
 # Functions
 
-def input_validation(user_inp):
-    if user_inp != '1' and user_inp != '2':
-        print('\nEnter a valid response')
-    else:
-        pass
-
+def user_input():
+    print('What do you do:\n\n'
+        '1 - Stand your ground and fight\n'
+        '2 - Run away to survive another day'
+    )
+    valid = False
+    while not valid:
+        user_inp = input('\nEnter 1 or 2:  ')
+        if user_inp != '1' and user_inp != '2':
+            print('Enter a valid response')
+        else:
+            valid = True
+    return user_inp
 
 # --------------------------------------------------------------------------------------------------
 # Main Code
