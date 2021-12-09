@@ -82,16 +82,23 @@ class Player():
         self.turns += 1
 
 class Monster():
+
+    '''
+    - Creates monster with a name and rank
+    - Weights monster number according to rank
+    '''
      
+    # creates monster object
     def __init__(self, name, rank):
         self.name = name
         self.monster_rank = rank
 
+    # weights random number according to monster rank
     def monster_rnd_num(self):
-        self.lower_bound = self.monster_rank * 4
+        self.lower_bound = self.monster_rank * 3
         self.monster_num = randint(self.lower_bound, 100)
-        
-        
+        return self.monster_num
+            
 # --------------------------------------------------------------------------------------------------
 # Functions
 
