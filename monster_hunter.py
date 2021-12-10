@@ -154,7 +154,12 @@ def display_battle(monster):
     else:
         message = random.choice(messages)
         print(f'{monster.name} ({monster.monster_rank}) {message}')
-    
+
+def create_player():
+    username = input('Enter your username:  ')
+    player = Player(username)
+    return player
+        
 # --------------------------------------------------------------------------------------------------
 # Main Code
 
