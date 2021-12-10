@@ -159,7 +159,15 @@ def create_player():
     username = input('Enter your username:  ')
     player = Player(username)
     return player
-        
+
+def get_monsters():
+    with open('monsters.txt', 'r') as file:
+        names = []
+        for monster in file:
+            monster = monster.rstrip('\n')
+            names.append(monster)
+    return names
+
 # --------------------------------------------------------------------------------------------------
 # Main Code
 
