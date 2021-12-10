@@ -132,6 +132,20 @@ def game_input():
             valid = True
     actions[int(action) - 1]()
 
+def introduction():
+    messages = ["Welcome to Monster Hunter (don't sue me Capcom)", 
+                "Navigate the dark passages and make it out safely",
+                "BUT WATCH OUT",
+                "There are many ferocious monsters standing in your way",
+                "Slay all the beasts and you win",
+                "Lose 4 times and you die",
+                "Good luck warrior!"
+            ]
+
+    for i in messages:
+        print(i)
+        time.sleep(2)    
+    
 # --------------------------------------------------------------------------------------------------
 # Main Code
 
