@@ -168,6 +168,16 @@ def get_monsters():
             names.append(monster)
     return names
 
+def create_monsters():
+    names = get_monsters()
+    monsters = []
+    for i in range(20):
+        name = random.choice(names)
+        names.remove(name)
+        monster = Monster(name, i + 1)
+        monsters.append(monster)
+    return monsters
+
 # --------------------------------------------------------------------------------------------------
 # Main Code
 
