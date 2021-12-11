@@ -178,6 +178,15 @@ def create_monsters():
         monsters.append(monster)
     return monsters
 
+def final_score(score, wins, turns):
+    total_score = score + wins + turns
+    print(f'\nScore:        {score}\n'
+        f'Wins:         {wins}\n'
+        f'Turns:        {turns}\n\n'
+        f'Final Score:  {total_score}'
+    )
+    return total_score
+
 # --------------------------------------------------------------------------------------------------
 # Main Code
 
