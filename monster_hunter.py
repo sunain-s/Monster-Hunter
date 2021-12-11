@@ -187,6 +187,10 @@ def final_score(score, wins, turns):
     )
     return total_score
 
+def save_score(username, total_score):
+    with open('scores.txt', 'a') as file:
+        file.write(f'{username}`{total_score}\n')
+        
 # --------------------------------------------------------------------------------------------------
 # Main Code
 
