@@ -215,6 +215,10 @@ def get_highscores():
                 del users[scores.index(top_scores[x])]
                 scores.remove(top_scores[x])
     display_highscores(top_users, top_scores)
+
+def display_highscores(users, scores):
+    for user in users:
+        print(f'{users.index(user) + 1}: {user} -   {scores[users.index(user)]}')
     
 # --------------------------------------------------------------------------------------------------
 # Main Code
