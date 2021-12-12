@@ -190,7 +190,32 @@ def final_score(score, wins, turns):
 def save_score(username, total_score):
     with open('scores.txt', 'a') as file:
         file.write(f'{username}`{total_score}\n')
-        
+
+def get_highscores():
+    users = []
+    scores = []
+    top_users = []
+    with open('scores.txt', 'r') as file:
+        for line in file:
+            line = line.rstrip('\n').split('`')
+            users.append(line[0])
+            scores.append(int(line[1]))
+            top_scores = sorted(scores, reverse = True)
+
+        if len(scores) < 10:
+            for x in range(len(scores)):
+                user = users[scores.index(top_scores[x])]
+                top_users.append(user)
+                del users[scores.index(top_scores[x])]
+                scores.remove(top_scores[x])
+        else:
+            for x in range(10):
+                user = users[scores.index(top_scores[x])]
+                top_users.append(user)
+                del users[scores.index(top_scores[x])]
+                scores.remove(top_scores[x])
+    display_highscores(top_users, top_scores)
+    
 # --------------------------------------------------------------------------------------------------
 # Main Code
 
