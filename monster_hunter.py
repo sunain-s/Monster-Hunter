@@ -224,8 +224,34 @@ def display_highscores(users, scores):
 # Main Code
 
 def main():
-    p1 = Player('bob', 0)
-    p1.fight(10)
+    introduction()
+    print('\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n')
+    time.sleep(2)
+    monsters = create_monsters()
+    player = create_player()
+
+    while player.defeats < 4 and player.wins < 20 and player.i < 20 :
+        
+        monster = monsters[player.i]
+        display_battle(monster)
+        choice = user_input()
+        
+        if choice == '1':
+            player.fight(monster.name, monster.monster_rank, monster.monster_rnd_num())
+        if choice == '2':
+            player.forfeit(monster.monster_rank)
+    
+    total_score = final_score(player.score, player.wins, player.turns)
+    save_score(player.name, total_score)
+
+    if player.defeats == 4:
+        print('You lost to 4 monsters and died\n💀 R.I.P 💀')
+    elif player.wins == 20:
+        print('You survived all the monsters and escaped!')
+        time.sleep(2)
+        print(f'Some might call you, {player.name}, the real monster...')
+
+    game_input()
 
 # --------------------------------------------------------------------------------------------------
 # Driver Code
