@@ -24,8 +24,9 @@ Extensions:
 # --------------------------------------------------------------------------------------------------
 # Imports
 
-import random
+import sys
 import time
+import random
 from random import randint
 
 # --------------------------------------------------------------------------------------------------
@@ -98,39 +99,50 @@ class Monster():
         self.lower_bound = self.monster_rank * 3
         self.monster_num = randint(self.lower_bound, 100)
         return self.monster_num
-            
+      
 # --------------------------------------------------------------------------------------------------
-# Functions
+# Input Functions
 
 def user_input():
+    '''
+    Input validation and message display for user input during game
+    '''
+
     print('What do you do:\n\n'
         '1 - Stand your ground and fight\n'
         '2 - Run away to survive another day'
     )
     valid = False
-    while not valid:
+    while not valid: # repeats until valid input given
         user_inp = input('\nEnter 1 or 2:  ')
-        if user_inp != '1' and user_inp != '2':
+        if user_inp != '1' and user_inp != '2': 
             print('Enter a valid response')
         else:
             valid = True
     return user_inp
-
+    
 def game_input():
-    actions = [main, sys.exit, get_highscores]
+    '''
+    Program options with input validation
+    '''
+
+    actions = [main, sys.exit, get_highscores] # function list to be called
     print('Would you like to:\n\n'
         '1 - Play again\n'
         '2 - Exit\n'
         '3 - View highscores'
     )
     valid = False
-    while not valid:
+    while not valid: # repeats until valid input given
         action = input('\nEnter 1, 2 or 3:  ')
         if action != '1' and action != '2' and action != '3':
             print('Enter a valid response')
         else:
             valid = True
-    actions[int(action) - 1]()
+    actions[int(action) - 1]() # calls selected function
+
+# --------------------------------------------------------------------------------------------------
+# Message Functions
 
 def introduction():
     messages = ["Welcome to Monster Hunter (don't sue me Capcom)", 
@@ -144,8 +156,8 @@ def introduction():
 
     for i in messages:
         print(i)
-        time.sleep(2)    
-    
+        time.sleep(2)
+
 def display_battle(monster):
     messages = ['draws closer', 'has appeared', ' has emerged', 'has materialised out of thin air']
     if monster.monster_rank == 20:
@@ -154,6 +166,9 @@ def display_battle(monster):
     else:
         message = random.choice(messages)
         print(f'{monster.name} ({monster.monster_rank}) {message}')
+
+# --------------------------------------------------------------------------------------------------
+# Object Creations Functions    
 
 def create_player():
     username = input('Enter your username:  ')
@@ -177,6 +192,9 @@ def create_monsters():
         monster = Monster(name, i + 1)
         monsters.append(monster)
     return monsters
+
+# --------------------------------------------------------------------------------------------------
+# Score Functions    
 
 def final_score(score, wins, turns):
     total_score = score + wins + turns
@@ -219,9 +237,9 @@ def get_highscores():
 def display_highscores(users, scores):
     for user in users:
         print(f'{users.index(user) + 1}: {user} -   {scores[users.index(user)]}')
-    
+
 # --------------------------------------------------------------------------------------------------
-# Main Code
+# Main Function
 
 def main():
     introduction()
