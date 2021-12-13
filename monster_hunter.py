@@ -145,6 +145,10 @@ def game_input():
 # Message Functions
 
 def introduction():
+    '''
+    Introductory messages at start of game
+    '''
+
     messages = ["Welcome to Monster Hunter (don't sue me Capcom)", 
                 "Navigate the dark passages and make it out safely",
                 "BUT WATCH OUT",
@@ -154,6 +158,7 @@ def introduction():
                 "Good luck warrior!"
             ]
 
+    # prints each message with a 2 second gap between them
     for i in messages:
         print(i)
         time.sleep(2)
