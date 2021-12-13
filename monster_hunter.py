@@ -164,13 +164,17 @@ def introduction():
         time.sleep(2)
 
 def display_battle(monster):
-    messages = ['draws closer', 'has appeared', ' has emerged', 'has materialised out of thin air']
-    if monster.monster_rank == 20:
+    '''
+    Displays messages to update user on monster being faced
+    '''
+
+    messages = ['draws closer', 'has appeared', ' has emerged', 'has materialised out of thin air'] # possible messages
+    if monster.monster_rank == 20: # special messages for boss monster
         print('WHY DO I HEAR BOSS MUSIC!?\n')
         print(f'ITS {monster.name.upper()} ({monster.monster_rank})!')
     else:
         message = random.choice(messages)
-        print(f'{monster.name} ({monster.monster_rank}) {message}')
+        print(f'{monster.name} ({monster.monster_rank}) {message}') # outputs monster name, rank and random message)
 
 # --------------------------------------------------------------------------------------------------
 # Object Creations Functions    
