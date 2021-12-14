@@ -201,13 +201,17 @@ def get_monsters():
     return names
 
 def create_monsters():
-    names = get_monsters()
+    '''
+    Creates instances of monster object
+    '''
+
+    names = get_monsters() # gets monster names
     monsters = []
     for i in range(20):
-        name = random.choice(names)
+        name = random.choice(names) # randomly chooses a monster name
         names.remove(name)
-        monster = Monster(name, i + 1)
-        monsters.append(monster)
+        monster = Monster(name, i + 1) # creates a monster with that name, and a rank
+        monsters.append(monster) # stores monster in list
     return monsters
 
 # --------------------------------------------------------------------------------------------------
