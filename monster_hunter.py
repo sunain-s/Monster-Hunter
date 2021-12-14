@@ -180,8 +180,12 @@ def display_battle(monster):
 # Object Creations Functions    
 
 def create_player():
+    '''
+    Gets username and creates player object
+    '''
+
     username = input('Enter your username:  ')
-    player = Player(username)
+    player = Player(username) # creates player object
     return player
 
 def get_monsters():
