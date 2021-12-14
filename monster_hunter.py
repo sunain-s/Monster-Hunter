@@ -189,11 +189,15 @@ def create_player():
     return player
 
 def get_monsters():
+    '''
+    Reads monster names from 'monsters.txt' and makes them usable in the program
+    '''
+
     with open('monsters.txt', 'r') as file:
         names = []
         for monster in file:
             monster = monster.rstrip('\n')
-            names.append(monster)
+            names.append(monster) # adds monsters names in file to list
     return names
 
 def create_monsters():
