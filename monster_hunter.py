@@ -239,28 +239,33 @@ def save_score(username, total_score):
         file.write(f'{username}`{total_score}\n')
 
 def get_highscores():
+    '''
+    Reads in scores from 'scores.txt' and makes a top 10 list
+    '''
+
     users = []
     scores = []
     top_users = []
     with open('scores.txt', 'r') as file:
         for line in file:
-            line = line.rstrip('\n').split('`')
+            line = line.rstrip('\n').split('`') # splits into user and score, and removes newline ending
             users.append(line[0])
             scores.append(int(line[1]))
-            top_scores = sorted(scores, reverse = True)
+            top_scores = sorted(scores, reverse = True) # sorted scores in descending order
 
-        if len(scores) < 10:
-            for x in range(len(scores)):
-                user = users[scores.index(top_scores[x])]
+        if len(scores) < 10: 
+            for x in range(len(scores)): # iterates until all scores added
+                user = users[scores.index(top_scores[x])] # finds corresponding user for top score
                 top_users.append(user)
-                del users[scores.index(top_scores[x])]
+                del users[scores.index(top_scores[x])] # removes user and score from list to prevent doubling up
                 scores.remove(top_scores[x])
         else:
-            for x in range(10):
-                user = users[scores.index(top_scores[x])]
+            for x in range(10): # iterates to create top 10
+                user = users[scores.index(top_scores[x])] # finds corresponding user for top score
                 top_users.append(user)
-                del users[scores.index(top_scores[x])]
+                del users[scores.index(top_scores[x])] # removes user and score from list to prevent doubling up
                 scores.remove(top_scores[x])
+                
     display_highscores(top_users, top_scores)
 
 def display_highscores(users, scores):
