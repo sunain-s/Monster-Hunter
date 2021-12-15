@@ -218,6 +218,10 @@ def create_monsters():
 # Score Functions    
 
 def final_score(score, wins, turns):
+    '''
+    Outputs players end stats and scores
+    '''
+
     total_score = score + wins + turns
     print(f'\nScore:        {score}\n'
         f'Wins:         {wins}\n'
