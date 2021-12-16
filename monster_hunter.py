@@ -279,6 +279,12 @@ def display_highscores(users, scores):
 # Main Function
 
 def main():
+    '''
+    Main function that formulates the program and calls all required functions
+    Ran upon file running
+    '''
+
+    # Set up and user introduction
     introduction()
     print('\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n')
     time.sleep(2)
