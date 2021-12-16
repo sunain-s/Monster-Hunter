@@ -309,6 +309,7 @@ def main():
     total_score = final_score(player.score, player.wins, player.turns)
     save_score(player.name, total_score)
 
+    # End output message - result dependent
     if player.defeats == 4:
         print('You lost to 4 monsters and died\n💀 R.I.P 💀')
     elif player.wins == 20:
@@ -316,6 +317,7 @@ def main():
         time.sleep(2)
         print(f'Some might call you, {player.name}, the real monster...')
 
+    # Further options
     game_input()
 
 # --------------------------------------------------------------------------------------------------
