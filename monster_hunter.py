@@ -269,9 +269,12 @@ def get_highscores():
     display_highscores(top_users, top_scores)
 
 def display_highscores(users, scores):
+    '''
+    Outputs highscores in user friendly format
+    '''
+
     for user in users:
         print(f'{users.index(user) + 1}: {user} -   {scores[users.index(user)]}')
-
 # --------------------------------------------------------------------------------------------------
 # Main Function
 
