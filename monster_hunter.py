@@ -291,17 +291,21 @@ def main():
     monsters = create_monsters()
     player = create_player()
 
+    # Main loop
     while player.defeats < 4 and player.wins < 20 and player.i < 20 :
         
+        # Battle and user decision
         monster = monsters[player.i]
         display_battle(monster)
         choice = user_input()
         
+        # Fight or Forfeit
         if choice == '1':
             player.fight(monster.name, monster.monster_rank, monster.monster_rnd_num())
         if choice == '2':
             player.forfeit(monster.monster_rank)
     
+    # Saving score
     total_score = final_score(player.score, player.wins, player.turns)
     save_score(player.name, total_score)
 
