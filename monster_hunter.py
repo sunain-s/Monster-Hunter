@@ -275,6 +275,7 @@ def display_highscores(users, scores):
 
     for user in users:
         print(f'{users.index(user) + 1}: {user} -   {scores[users.index(user)]}')
+        
 # --------------------------------------------------------------------------------------------------
 # Main Function
 
