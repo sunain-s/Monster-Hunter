@@ -35,6 +35,8 @@ from random import randint
 class Player():
 
     '''
+    PLAYER CLASS:
+
     - Creates player object with a name, score, defeats, wins and turns
     - Handles monster vs player battle including forfeits
     '''
@@ -73,6 +75,7 @@ class Player():
             )
         self.turns += 1
 
+
     def forfeit(self, monster_rank):
         # subtract monster rank, output updated stats, add a turn
         self.score -= monster_rank
@@ -85,6 +88,8 @@ class Player():
 class Monster():
 
     '''
+    MONSTER CLASS:
+    
     - Creates monster with a name and rank
     - Weights monster number according to rank
     '''
@@ -174,7 +179,7 @@ def display_battle(monster):
         print(f'ITS {monster.name.upper()} ({monster.monster_rank})!')
     else:
         message = random.choice(messages)
-        print(f'{monster.name} ({monster.monster_rank}) {message}') # outputs monster name, rank and random message)
+        print(f'{monster.name} ({monster.monster_rank}) {message}') # outputs monster name, rank and random message
 
 # --------------------------------------------------------------------------------------------------
 # Object Creations Functions    
@@ -275,7 +280,7 @@ def display_highscores(users, scores):
 
     for user in users:
         print(f'{users.index(user) + 1}: {user} -   {scores[users.index(user)]}')
-        
+
 # --------------------------------------------------------------------------------------------------
 # Main Function
 
