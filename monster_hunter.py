@@ -89,7 +89,7 @@ class Monster():
 
     '''
     MONSTER CLASS:
-    
+
     - Creates monster with a name and rank
     - Weights monster number according to rank
     '''
@@ -212,7 +212,7 @@ def create_monsters():
 
     names = get_monsters() # gets monster names
     monsters = []
-    for i in range(20):
+    for i in range(len(names)):
         name = random.choice(names) # randomly chooses a monster name
         names.remove(name)
         monster = Monster(name, i + 1) # creates a monster with that name, and a rank
@@ -318,7 +318,7 @@ def main():
     # End output message - result dependent
     if player.defeats == 4:
         print('You lost to 4 monsters and died\n💀 R.I.P 💀')
-    elif player.wins == 20:
+    elif player.wins == len(get_monsters):
         print('You survived all the monsters and escaped!')
         time.sleep(2)
         print(f'Some might call you, {player.name}, the real monster...')
