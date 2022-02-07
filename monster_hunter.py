@@ -41,31 +41,41 @@ class Player():
     - Handles monster vs player battle including forfeits
     '''
 
-    # creates player object
-    def __init__(self, name): 
+    def __init__(self, name):
+        '''
+        Initiates player object with:
+
+        - inputted name
+        - score
+        - defeat, wins and turns counter
+        - monster list iterator
+        '''
+
         self.name = name
         self.score = 0
         self.defeats = 0
         self.wins = 0
         self.turns = 0
-        self.i = 0 # monster list iterator
+        self.i = 0
 
     def fight(self, monster_name, monster_rank, monster_num):
+        '''
+        Player vs Monster fight result determiner, using weighted random values
+        '''
+
         player_num =  randint(1, 100)
-        # if player wins, add a win, add monster rank to score
+        # if player wins, add a win add monster rank to score, if player loses add a defeat
         if player_num > monster_num: 
             self.wins += 1
             self.score += monster_rank
             print(f'{monster_name} dealt {monster_num} damage to you, but you hit back with {player_num} damage and won!')
             self.i += 1  
-
-        # if player loses, add a loss
         elif player_num < monster_num:
             self.defeats += 1
             print(f'You dealt {player_num} damage to {monster_name} , but they dealt {monster_num} damage to you and beat you :(')
     
-        # if draw, repeat
         else:
+            # if draw, repeat
             self.fight(monster_name, monster_rank, monster_num)
         
         # output updated stats, add a turn
@@ -77,13 +87,17 @@ class Player():
 
 
     def forfeit(self, monster_rank):
-        # subtract monster rank, output updated stats, add a turn
+        '''
+        Player forfeit scenario, subtract monster rank from score
+        '''
+
         self.score -= monster_rank
         print(f'Score:        {self.score}\n'
             f'Wins:         {self.wins}\n'
             f'Losses:       {self.defeats}\n'
         )
         self.turns += 1
+
 
 class Monster():
 
@@ -117,8 +131,10 @@ def user_input():
         '1 - Stand your ground and fight\n'
         '2 - Run away to survive another day'
     )
+
+    # repeats until valid input given
     valid = False
-    while not valid: # repeats until valid input given
+    while not valid:
         user_inp = input('\nEnter 1 or 2:  ')
         if user_inp != '1' and user_inp != '2': 
             print('Enter a valid response')
@@ -131,20 +147,24 @@ def game_input():
     Program options with input validation
     '''
 
-    actions = [main, sys.exit, get_highscores] # function list to be called
     print('Would you like to:\n\n'
         '1 - Play again\n'
         '2 - Exit\n'
         '3 - View highscores'
     )
+
+    # repeats until valid input given
     valid = False
-    while not valid: # repeats until valid input given
+    while not valid:
         action = input('\nEnter 1, 2 or 3:  ')
         if action != '1' and action != '2' and action != '3':
             print('Enter a valid response')
         else:
             valid = True
-    actions[int(action) - 1]() # calls selected function
+    
+    # calls selected function 
+    actions = [main, sys.exit, get_highscores]           
+    actions[int(action) - 1]()
 
 # --------------------------------------------------------------------------------------------------
 # Message Functions
@@ -163,7 +183,6 @@ def introduction():
                 "Good luck warrior!"
             ]
 
-    # prints each message with a 2 second gap between them
     for i in messages:
         print(i)
         time.sleep(2)
@@ -173,13 +192,14 @@ def display_battle(monster):
     Displays messages to update user on monster being faced
     '''
 
-    messages = ['draws closer', 'has appeared', ' has emerged', 'has materialised out of thin air'] # possible messages
-    if monster.monster_rank == 20: # special messages for boss monster
+    # Outputs special message for boss monster, else outputs random message from possible options
+    messages = ['draws closer', 'has appeared', ' has emerged', 'has materialised out of thin air']
+    if monster.monster_rank == 20:
         print('WHY DO I HEAR BOSS MUSIC!?\n')
         print(f'ITS {monster.name.upper()} ({monster.monster_rank})!')
     else:
         message = random.choice(messages)
-        print(f'{monster.name} ({monster.monster_rank}) {message}') # outputs monster name, rank and random message
+        print(f'{monster.name} ({monster.monster_rank}) {message}')
 
 # --------------------------------------------------------------------------------------------------
 # Object Creations Functions    
@@ -190,19 +210,19 @@ def create_player():
     '''
 
     username = input('Enter your username:  ')
-    player = Player(username) # creates player object
+    player = Player(username)
     return player
 
 def get_monsters():
     '''
-    Reads monster names from 'monsters.txt' and makes them usable in the program
+    Reads monster names from 'monsters.txt' and makes them usable in the program (list form)
     '''
 
     with open('monsters.txt', 'r') as file:
         names = []
         for monster in file:
             monster = monster.rstrip('\n')
-            names.append(monster) # adds monsters names in file to list
+            names.append(monster)
     return names
 
 def create_monsters():
@@ -210,13 +230,14 @@ def create_monsters():
     Creates instances of monster object
     '''
 
-    names = get_monsters() # gets monster names
+    # randomly selects a name and creates monster - stored in monsters list
+    names = get_monsters()
     monsters = []
     for i in range(len(names)):
-        name = random.choice(names) # randomly chooses a monster name
+        name = random.choice(names) 
         names.remove(name)
-        monster = Monster(name, i + 1) # creates a monster with that name, and a rank
-        monsters.append(monster) # stores monster in list
+        monster = Monster(name, i + 1)
+        monsters.append(monster)
     return monsters
 
 # --------------------------------------------------------------------------------------------------
@@ -245,32 +266,35 @@ def save_score(username, total_score):
 
 def get_highscores():
     '''
-    Reads in scores from 'scores.txt' and makes a top 10 list
+    Reads in users and scores from 'scores.txt' and makes a top 10 list
     '''
 
     users = []
     scores = []
     top_users = []
+
     with open('scores.txt', 'r') as file:
+        # gets users and scores, sorts scores into descending numerical order
         for line in file:
-            line = line.rstrip('\n').split('`') # splits into user and score, and removes newline ending
+            line = line.rstrip('\n').split('`')
             users.append(line[0])
             scores.append(int(line[1]))
-            top_scores = sorted(scores, reverse = True) # sorted scores in descending order
+            top_scores = sorted(scores, reverse = True)
 
+        # gets top ten scores and users, prevents doubling up
         if len(scores) < 10: 
-            for x in range(len(scores)): # iterates until all scores added
-                user = users[scores.index(top_scores[x])] # finds corresponding user for top score
+            for x in range(len(scores)):
+                user = users[scores.index(top_scores[x])]
                 top_users.append(user)
-                del users[scores.index(top_scores[x])] # removes user and score from list to prevent doubling up
+                del users[scores.index(top_scores[x])]
                 scores.remove(top_scores[x])
         else:
-            for x in range(10): # iterates to create top 10
-                user = users[scores.index(top_scores[x])] # finds corresponding user for top score
+            # less than 10 scores available, creates top list
+            for x in range(10):
+                user = users[scores.index(top_scores[x])]
                 top_users.append(user)
-                del users[scores.index(top_scores[x])] # removes user and score from list to prevent doubling up
-                scores.remove(top_scores[x])
-                
+                del users[scores.index(top_scores[x])]
+                scores.remove(top_scores[x])           
     display_highscores(top_users, top_scores)
 
 def display_highscores(users, scores):
@@ -297,7 +321,7 @@ def main():
     monsters = create_monsters()
     player = create_player()
 
-    # Main loop
+    # Main loop, loops until game over condition hit
     while player.defeats < 4 and player.wins < 20 and player.i < 20 :
         
         # Battle and user decision
@@ -327,7 +351,7 @@ def main():
     game_input()
 
 # --------------------------------------------------------------------------------------------------
-# Driver Code
+# Runs Program
 
 if __name__ == '__main__':
     main()
