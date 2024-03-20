@@ -1,7 +1,7 @@
 # Monster-Hunter
 CLI Monster Hunter game made using Python3
 
-# Requirements
+## Requirements
 - Monsters and the player must be objects with attributes
 - Program records player name, score, wins and defeats
 - Points scored by defeating a monster
@@ -14,19 +14,19 @@ CLI Monster Hunter game made using Python3
 - Player wins when all monsters are defeated
 - Once a monster is killed it can not be fought against again  
 
-# How to Run
+## How to Run
 
 Make sure a recent version of python is installed to your system, and run 'monster_hunter.py'
 
 Can customise names in 'monsters.txt'
 
-# What I Learnt
+## What I Learnt
 
 - Effectively using class methods to simplify and condense code
 - Making main loop as easy to manage as possible
 - Decomposing into multiple simple functions and procedures rather than a few complex ones
 
-# Improvements
+## Improvements
 
 - Make a text based interface
   - Text art
